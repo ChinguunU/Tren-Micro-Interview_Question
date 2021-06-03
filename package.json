@@ -1,0 +1,32 @@
+{
+  "name": "trend-micro-interview-question",
+  "version": "1.0.0",
+  "description": "Ticket notification function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChinguunU/Trend-Micro-Interview-Question.git"
+  },
+  "author": "Chinguun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChinguunU/Trend-Micro-Interview-Question/issues"
+  },
+  "homepage": "https://github.com/ChinguunU/Trend-Micro-Interview-Question#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.920.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "googleapis": "^39.2.0",
+    "readline": "^1.3.0",
+    "util": "^0.12.4"
+  }
+}
