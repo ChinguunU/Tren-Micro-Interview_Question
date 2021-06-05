@@ -58,6 +58,6 @@ app.post('/setGoogleToken', async function (req, res) {
     }
 })
    
-app.listen(constants.PORT, constants.HOSTNAME, () => {
-    console.log(`Server running at http://${constants.HOSTNAME}:${constants.PORT}/`);
+app.listen(constants.PORT, () => {
+    console.log(`Server running on port ${constants.PORT}`);
 })

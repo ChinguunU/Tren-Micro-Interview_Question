@@ -32,7 +32,7 @@ async function sendEmail (user, ticketData) {
             email_address: user[2],
             ready_to_send: true,
             email: {
-                subject: `Ticket ${ticketData.ticket} Closed`,
+                subject: `Ticket(s) Closed`,
                 to_address: [user[2]],
                 cc_address: [],
                 body: `Dear ${user[1].toUpperCase()},
@@ -153,7 +153,7 @@ async function cronNotifyTicketClosure () {
             
             // Notifying users
             for(const [key, value] of usersToSend) {
-                await sendEmail(key, value[0])
+                await sendEmail(key, value)
             }
 
             // Saving offset for next cron job
