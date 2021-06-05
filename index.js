@@ -1,30 +1,63 @@
-const fs             = require('fs'),
-getSpreadSheetAuth   = require('./google-sheets/google-sheets-oath.js'),
-GoogleSheet          = require('./google-sheets/google-sheets-operations.js'),
-AWS                  = require('aws-sdk'),
-config               = require('./config/config.js'),
+const express        = require('express'),
+app                  = express(),
+fs                   = require('fs'),
 util                 = require('util'),
 readFile             = util.promisify(fs.readFile),
-express              = require('express'),
-app                  = express()
+constants            = require('./constants.js'),
+schedule             = require('node-schedule'),
+cronoperations       = require('./cron-operations.js'),
+{ getSheetAuthUrl, 
+    saveAuthToken }  = require('./google-sheets/google-sheets-oauth.js')
 
-const hostname = 'localhost'
-const port = 8080
-
-AWS.config.update(config.aws_remote_config)
+// Cron Job scheduled to be run every week Monday 9 AM
+var weeklyRule = new schedule.RecurrenceRule()
+weeklyRule.dayOfWeek = 0
+weeklyRule.hour = 7
+weeklyRule.minute = 0
+weeklyRule.tz = constants.TIMEZONE
+schedule.scheduleJob(weeklyRule, function () {
+    Promise.all([
+        cronoperations.cronNotifyTicketClosure()
+    ]).then(function (results) {
+        console.log('CRONS RAN')
+    }).catch(function (errs) {
+        console.log('CRON ERROR:')
+        console.log(errs)
+    })
+})
 
 app.post('/', async function (req, res) {
-    let googleSheet = new GoogleSheet()
+    await cronoperations.cronNotifyTicketClosure()
+})
+
+app.get('/getGoogleSheetAuthUrl', async function (req, res) {
     try {
-        let content = await readFile('credentials.json');
-        let auth = await getSpreadSheetAuth(JSON.parse(content))
-        // googleSheet.func(auth)
-        res.send('worked')
-    } catch(err) {
-        console.log(err)
-    }  
+        // Getting google sheet credentials
+        let content = await readFile(constants.GOOGLE_CREDENTIALS)
+        // Getting google sheet auth url
+        let url = await getSheetAuthUrl(JSON.parse(content))
+        res.send(url)
+    } catch (err) {
+        res.status(500).send('Internal error')
+    }
+})
+
+app.post('/setGoogleToken', async function (req, res) {
+    try {
+        if (req.query && req.query.code) {
+            // Getting google sheet credentials
+            let content = await readFile(constants.GOOGLE_CREDENTIALS)
+            // Saving token
+            await saveAuthToken(req.query.code, JSON.parse(content))
+            res.send('Success')
+        } else {
+            res.send('Please provide code in query params')
+        }
+    } catch (err) {
+        res.status(500).send('Internal error')
+    }
 })
    
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
- })
+app.listen(constants.PORT, constants.HOSTNAME, () => {
+    console.log(`Server running at http://${constants.HOSTNAME}:${constants.PORT}/`);
+})
