@@ -8,6 +8,9 @@ A Cron Software utility that identifies which tickets have been closed from a go
 * [Putty](https://www.putty.org/) - We will use it connect to our EC2 instance.
 * [Puttygen](https://www.puttygen.com/) - Will use it to convert .pem files to .ppk.
 * [Postman](https://www.postman.com/downloads/) - To generate Google Sheet token
+### Programming tools
+* Node js v12.16.1
+* npm package manager v6.13.4
 ### Getting Google Spread Sheet Credentials
 #### Enabling Google sheets API
 1. Log in to [Google Cloud Console](https://console.cloud.google.com/).
