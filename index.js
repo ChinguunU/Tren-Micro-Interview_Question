@@ -20,8 +20,8 @@ cronoperations       = require('./cron-operations.js'),
 
 // Cron Job scheduled to be run every week Monday 9 AM
 var weeklyRule = new schedule.RecurrenceRule()
-weeklyRule.dayOfWeek = 0
-weeklyRule.hour = 7
+weeklyRule.dayOfWeek = 1
+weeklyRule.hour = 9
 weeklyRule.minute = 0
 weeklyRule.tz = constants.TIMEZONE
 schedule.scheduleJob(weeklyRule, function () {
