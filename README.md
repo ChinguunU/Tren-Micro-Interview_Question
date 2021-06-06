@@ -85,7 +85,7 @@ A Cron Software utility that identifies which tickets have been closed from a go
     1. Open postman and create a get request with the following 
        http://[PUBLIC_DNS]:8080/getGoogleSheetAuthUrl and hit send.
        You Should receive a url as a response.
-    ![Image of deployed](./images/getutl.PNG)
+    ![Image of deployed](./images/geturl.PNG)
     2. Follow the link on Chrome confirm and allow all steps and get the token code.
     ![Image of deployed](./images/code.PNG)
     3. Make another request with the following details
