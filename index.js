@@ -11,7 +11,7 @@ cronoperations       = require('./cron-operations.js'),
 
 /**
  * NOTE:// FURTHER IMPROVEMENTS
- * Should implement a logger file to log all activites and errors in a file.
+ * Should implement a logger file to log all activites and errors in a file instead of console.log.
  * May be able to improve querying google sheets.
  * Improve Documentation/Commenting
  * Not entirely sure if i have implemented it in the most efficient way may be able 
