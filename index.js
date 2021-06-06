@@ -9,6 +9,15 @@ cronoperations       = require('./cron-operations.js'),
 { getSheetAuthUrl, 
     saveAuthToken }  = require('./google-sheets/google-sheets-oauth.js')
 
+/**
+ * NOTE:// FURTHER IMPROVEMENTS
+ * Should implement a logger file to log all activites and errors in a file.
+ * May be able to improve querying google sheets.
+ * Improve Documentation/Commenting
+ * Not entirely sure if i have implemented it in the most efficient way may be able 
+ * to hit lower time complexity algorithms in cron-operations.js(That said time may not be that important for this utility)
+ */
+
 // Cron Job scheduled to be run every week Monday 9 AM
 var weeklyRule = new schedule.RecurrenceRule()
 weeklyRule.dayOfWeek = 0
