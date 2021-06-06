@@ -32,9 +32,9 @@ A Cron Software utility that identifies which tickets have been closed from a go
 5. Now download the credentials and store somewhere safe for now, make sure to name it **credentials.json**
 ![Image of cred download](./images/download-cred.PNG)
 
-### Deploying to AWS
+## Deploying to AWS
 
-#### Launching EC2 instance
+### Launching EC2 instance
 1. Log into [AWS Console](https://aws.amazon.com/console/).
 2. Navigate to [EC2](https://console.aws.amazon.com/ec2/v2).
 3. Click on Launch new instance.
@@ -50,15 +50,15 @@ A Cron Software utility that identifies which tickets have been closed from a go
 9. Launch Instance! and voila now make copy your public DNS for later use.
 ![Image of launch ec2](./images/instance.PNG)
 
-#### Launching Cron App
+### Launching Cron App
 
-##### Creating .ppk from .pem via Puttygen
+#### Creating .ppk from .pem via Puttygen
 1. Open Puttygen.
 2. Click on Load and select the .pem key pair file you downloaded on your EC2 machine launch. it should look something similar to the image below.
 ![Image of generate ppk](./images/generate-ppk.PNG)
 3. Click on **Save private key** and save the .ppk key pair file somewhere safe.
 
-##### Connecting to EC2 instance via Putty
+#### Connecting to EC2 instance via Putty
 1. Open putty.
 2. In the hostname field type ubuntu@[YOUR_PUBLIC_DNS] and set port as 22. It should look like image below.
 ![Image of putty](./images/putty-main.PNG)
@@ -66,7 +66,7 @@ A Cron Software utility that identifies which tickets have been closed from a go
 ![Image of putty](./images/putty-key.PNG)
 4. Save the session for later use and click Open.
 
-##### Installing all tools, code and dependencies
+#### Installing all tools, code and dependencies
 1. When the EC2 terminal opens on putty type the following commands.
     1. sudo apt update
     2. sudo apt install nodejs
@@ -93,7 +93,7 @@ A Cron Software utility that identifies which tickets have been closed from a go
        If successful you should receive success as response.
     ![Image of deployed](./images/save-code.PNG)
 
-#### Testing Cron App
+### Testing Cron App
 1. Go into EC2 instance via putty and navigate to **Trend-Micro-Interview-Question** directory.
 2. Type **ls** you should see token.json has been created.
 3. Stop the program: sudo pm2 stop 0
